@@ -90,6 +90,13 @@ using HiddenVilla_Server.Pages.LearnBlazor.LearnBlazerComponent;
 #line hidden
 #nullable disable
 #nullable restore
+#line 13 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\_Imports.razor"
+using Blazored.TextEditor;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\Pages\LearnBlazor\BlazerJS.razor"
 using HiddenVilla_Server.Helper;
 

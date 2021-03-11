@@ -96,6 +96,13 @@ using HiddenVilla_Server.Helper;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 13 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\_Imports.razor"
+using Blazored.TextEditor;
+
+#line default
+#line hidden
+#nullable disable
     public partial class NavMenu : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -104,7 +111,7 @@ using HiddenVilla_Server.Helper;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 63 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\Shared\NavMenu.razor"
+#line 68 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

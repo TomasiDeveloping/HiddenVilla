@@ -2,9 +2,12 @@
 @using Models
 @using Business.Repository.IRepository
 @using HiddenVilla_Server.Service.IService
+@using Microsoft.Win32.SafeHandles
 @inject IHotelRoomRepository HotelRoomRepository;
 @inject IJSRuntime JsRuntime;
 @inject IFileUpload FileUpload;
+@inject NavigationManager NavigationManager;
+@attribute [Authorize(Roles = Common.SD.Role_Admin)]
 
 <div class="row mt-4">
     <div class="col-8">
@@ -79,13 +82,12 @@
 
     public async Task ConfirmDelete_Click(bool isConfirmed)
     {
-        IsProcessing = true;
         if (isConfirmed && DeleteRoomId != null)
         {
             HotelRoomDTO hotelRoom = await HotelRoomRepository.GetHotelRoom(DeleteRoomId.Value);
             foreach (var image in hotelRoom.HotelRoomImages)
             {
-                var imageName = image.RoomImageUrl.Replace($"RoomImages/", "");
+                var imageName = image.RoomImageUrl.Replace($"{NavigationManager.BaseUri}RoomImages/", "");
                 FileUpload.DeleteFile(imageName);
             }
             

@@ -96,6 +96,13 @@ using HiddenVilla_Server.Helper;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 13 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\_Imports.razor"
+using Blazored.TextEditor;
+
+#line default
+#line hidden
+#nullable disable
     public partial class EditDeleteButton : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Business.Repository.IRepository;
 using DataAcess.Data;
+using DataAcesss.Data;
 using Microsoft.EntityFrameworkCore;
 using Models;
 
@@ -58,7 +59,7 @@ namespace Business.Repository
        
         }
 
-        public async Task<HotelRoomDTO> GetHotelRoom(int roomId)
+        public async Task<HotelRoomDTO> GetHotelRoom(int roomId, string checkInDateStr, string checkOutDateStr)
         {
             try
             {
@@ -88,7 +89,7 @@ namespace Business.Repository
             return 0;
         }
 
-        public async Task<IEnumerable<HotelRoomDTO>> GetAllHotelRooms()
+        public async Task<IEnumerable<HotelRoomDTO>> GetAllHotelRooms(string checkInDateStr, string checkOutDateStr)
         {
             try
             {

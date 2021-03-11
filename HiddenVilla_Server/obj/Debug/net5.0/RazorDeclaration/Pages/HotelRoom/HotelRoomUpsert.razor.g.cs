@@ -97,6 +97,13 @@ using HiddenVilla_Server.Helper;
 #line hidden
 #nullable disable
 #nullable restore
+#line 13 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\_Imports.razor"
+using Blazored.TextEditor;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 3 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\Pages\HotelRoom\HotelRoomUpsert.razor"
 using Models;
 
@@ -127,7 +134,7 @@ using HiddenVilla_Server.Service.IService;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 80 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\Pages\HotelRoom\HotelRoomUpsert.razor"
+#line 113 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\Pages\HotelRoom\HotelRoomUpsert.razor"
        
     [Parameter]
     public int? Id { get; set; }
@@ -136,9 +143,19 @@ using HiddenVilla_Server.Service.IService;
     private HotelRoomImageDTO RoomImage { get; set; } = new HotelRoomImageDTO();
     private List<string> DeletedImageNames { get; set; } = new List<string>();
     private bool IsImageUploadProcessStarted { get; set; } = false;
+    public BlazoredTextEditor QuillHtml { get; set; } = new BlazoredTextEditor();
+    
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthenticationsState { get; set;  }
 
     protected override async Task OnInitializedAsync()
     {
+        var authenticationState = await AuthenticationsState;
+         if (!authenticationState.User.IsInRole(Common.SD.Role_Admin))
+         {
+             var uri = new Uri(NavigationManager.Uri);
+             NavigationManager.NavigateTo($"/identity/account/login?returnUrl={uri.LocalPath}");
+         }
         if (Id != null)
         {
             // updating
@@ -155,6 +172,31 @@ using HiddenVilla_Server.Service.IService;
         }
     }
 
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            return;
+        }
+        bool loading = true;
+        while (loading)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(HotelRoomModel.Details))
+                {
+                    await this.QuillHtml.LoadHTMLContent(HotelRoomModel.Details);
+                }
+                loading = false;
+            }
+            catch (Exception e)
+            {
+                await Task.Delay(10);
+                loading = true;
+            }
+        }
+    }
+
     private async Task HandleHotelRoomUpsert()
     {
         try
@@ -168,6 +210,7 @@ using HiddenVilla_Server.Service.IService;
             if (HotelRoomModel.Id != 0 && Title == "Update")
             {
                 // update
+                HotelRoomModel.Details = await QuillHtml.GetHTML();
                 var updateRoomResult = await HotelRoomRepository.UpdateHotelRoom(HotelRoomModel.Id, HotelRoomModel);
                 if ((HotelRoomModel.ImagesUrls != null && HotelRoomModel.ImagesUrls.Any())
                 || (DeletedImageNames != null && DeletedImageNames.Any()))
@@ -176,7 +219,7 @@ using HiddenVilla_Server.Service.IService;
                     {
                         foreach (var deletedImageName in DeletedImageNames)
                         {
-                            var imageName = deletedImageName.Replace($"RoomImages/", "");
+                            var imageName = deletedImageName.Replace($"{NavigationManager.BaseUri}RoomImages/", "");
                             var result = FileUpload.DeleteFile(imageName);
                             await HotelImagesRepository.DeleteHotelImageByImageUrl(deletedImageName);
                         }
@@ -189,6 +232,7 @@ using HiddenVilla_Server.Service.IService;
             else
             {
                 // create
+                HotelRoomModel.Details = await QuillHtml.GetHTML();
                 var createdResult = await HotelRoomRepository.CreateHotelRoom(HotelRoomModel);
                 await AddHotelRoomImage(createdResult);
                 await JsRuntime.ToastrSucces("Hotel room created successfully");
@@ -201,6 +245,15 @@ using HiddenVilla_Server.Service.IService;
         
         NavigationManager.NavigateTo("hotel-room");
     }
+
+    // public void SetHTML()
+    // {
+    //     if (!string.IsNullOrEmpty(HotelRoomModel.Details))
+    //     {
+    //         this.QuillHtml.LoadHTMLContent(HotelRoomModel.Details);
+    //     }
+    //     StateHasChanged();
+    // }
 
     private async Task HandleImageUpload(InputFileChangeEventArgs e)
     {
@@ -275,7 +328,7 @@ using HiddenVilla_Server.Service.IService;
         try
         {
             var imageIndex = HotelRoomModel.ImagesUrls.FindIndex(x => x == imageUrl);
-            var imageName = imageUrl.Replace($"RoomImages/", "");
+            var imageName = imageUrl.Replace($"{NavigationManager.BaseUri}RoomImages/", "");
             if (HotelRoomModel.Id == 0 && Title == "Create")
             {
                 var result = FileUpload.DeleteFile(imageName);

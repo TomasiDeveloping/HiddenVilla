@@ -15,8 +15,11 @@ namespace Models
         public double RegularRate { get; set; }
         public string Details { get; set; }
         public string SqFt { get; set; }
+        public double TotalDays { get; set; }
+        public double TotalAmount { get; set; }
         public virtual ICollection<HotelRoomImageDTO> HotelRoomImages { get; set; }
         
         public List<string> ImagesUrls { get; set; }
+        public bool IsBooked { get; set; }
     }
 }

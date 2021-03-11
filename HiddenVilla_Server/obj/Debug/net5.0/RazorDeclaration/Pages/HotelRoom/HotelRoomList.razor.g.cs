@@ -97,6 +97,13 @@ using HiddenVilla_Server.Helper;
 #line hidden
 #nullable disable
 #nullable restore
+#line 13 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\_Imports.razor"
+using Blazored.TextEditor;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\Pages\HotelRoom\HotelRoomList.razor"
 using Models;
 
@@ -117,6 +124,20 @@ using HiddenVilla_Server.Service.IService;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\Pages\HotelRoom\HotelRoomList.razor"
+using Microsoft.Win32.SafeHandles;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 10 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\Pages\HotelRoom\HotelRoomList.razor"
+           [Authorize(Roles = Common.SD.Role_Admin)]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/hotel-room")]
     public partial class HotelRoomList : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -126,7 +147,7 @@ using HiddenVilla_Server.Service.IService;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 59 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\Pages\HotelRoom\HotelRoomList.razor"
+#line 62 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\Pages\HotelRoom\HotelRoomList.razor"
        
     private IEnumerable<HotelRoomDTO> HotelRooms { get; set; } = new List<HotelRoomDTO>();
     private int? DeleteRoomId { get; set; } = null;
@@ -150,13 +171,12 @@ using HiddenVilla_Server.Service.IService;
 
     public async Task ConfirmDelete_Click(bool isConfirmed)
     {
-        IsProcessing = true;
         if (isConfirmed && DeleteRoomId != null)
         {
             HotelRoomDTO hotelRoom = await HotelRoomRepository.GetHotelRoom(DeleteRoomId.Value);
             foreach (var image in hotelRoom.HotelRoomImages)
             {
-                var imageName = image.RoomImageUrl.Replace($"RoomImages/", "");
+                var imageName = image.RoomImageUrl.Replace($"{NavigationManager.BaseUri}RoomImages/", "");
                 FileUpload.DeleteFile(imageName);
             }
             
@@ -172,6 +192,7 @@ using HiddenVilla_Server.Service.IService;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IFileUpload FileUpload { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JsRuntime { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IHotelRoomRepository HotelRoomRepository { get; set; }

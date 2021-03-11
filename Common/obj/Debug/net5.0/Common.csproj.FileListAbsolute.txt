@@ -2,7 +2,6 @@ D:\Webseiten\HiddenVilla\HiddenVilla\Common\bin\Debug\net5.0\Common.deps.json
 D:\Webseiten\HiddenVilla\HiddenVilla\Common\bin\Debug\net5.0\Common.dll
 D:\Webseiten\HiddenVilla\HiddenVilla\Common\bin\Debug\net5.0\ref\Common.dll
 D:\Webseiten\HiddenVilla\HiddenVilla\Common\bin\Debug\net5.0\Common.pdb
-D:\Webseiten\HiddenVilla\HiddenVilla\Common\obj\Debug\net5.0\Common.csprojAssemblyReference.cache
 D:\Webseiten\HiddenVilla\HiddenVilla\Common\obj\Debug\net5.0\Common.GeneratedMSBuildEditorConfig.editorconfig
 D:\Webseiten\HiddenVilla\HiddenVilla\Common\obj\Debug\net5.0\Common.AssemblyInfoInputs.cache
 D:\Webseiten\HiddenVilla\HiddenVilla\Common\obj\Debug\net5.0\Common.AssemblyInfo.cs
@@ -10,3 +9,4 @@ D:\Webseiten\HiddenVilla\HiddenVilla\Common\obj\Debug\net5.0\Common.csproj.CoreC
 D:\Webseiten\HiddenVilla\HiddenVilla\Common\obj\Debug\net5.0\Common.dll
 D:\Webseiten\HiddenVilla\HiddenVilla\Common\obj\Debug\net5.0\ref\Common.dll
 D:\Webseiten\HiddenVilla\HiddenVilla\Common\obj\Debug\net5.0\Common.pdb
+D:\Webseiten\HiddenVilla\HiddenVilla\Common\obj\Debug\net5.0\Common.csprojAssemblyReference.cache
