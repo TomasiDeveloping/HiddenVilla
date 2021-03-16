@@ -78,3 +78,4 @@ D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Api\obj\Debug\net5.0\HiddenVill
 D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Api\obj\Debug\net5.0\ref\HiddenVilla_Api.dll
 D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Api\obj\Debug\net5.0\HiddenVilla_Api.pdb
 D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Api\obj\Debug\net5.0\HiddenVilla_Api.genruntimeconfig.cache
+D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Api\bin\Debug\net5.0\Stripe.net.dll

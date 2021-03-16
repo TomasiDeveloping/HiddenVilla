@@ -14,7 +14,7 @@
         "outputPath": "D:\\Webseiten\\HiddenVilla\\HiddenVilla\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\ptoma\\AppData\\Roaming\\NuGet\\NuGet.Config",

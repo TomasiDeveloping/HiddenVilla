@@ -73,7 +73,7 @@ namespace HiddenVilla_Api.Controllers
                 });
             }
 
-            if (!DateTime.TryParseExact(checkInDate, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None,
+            if (!DateTime.TryParseExact(checkInDate, "MM.dd.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None,
                 out var dtCheckIndDate))
             {
                 return BadRequest(new ErrorModel()
@@ -82,7 +82,7 @@ namespace HiddenVilla_Api.Controllers
                     ErrorMessage = "Invalid CheckIn date format. Valid format will be MM/dd/yyyy"
                 });
             }
-            if (!DateTime.TryParseExact(checkOutDate, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None,
+            if (!DateTime.TryParseExact(checkOutDate, "MM.dd.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None,
                 out var dtCheckOutDate))
             {
                 return BadRequest(new ErrorModel()

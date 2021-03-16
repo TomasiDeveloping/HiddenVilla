@@ -133,7 +133,7 @@ using HiddenVilla_Client.Service.IService;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 104 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\Pages\HotelRooms\RoomDetails.razor"
+#line 127 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\Pages\HotelRooms\RoomDetails.razor"
        
     [Parameter]
     public int? Id { get; set; }
@@ -151,7 +151,7 @@ using HiddenVilla_Client.Service.IService;
                 if (await LocalStorageService.GetItemAsync<HomeVM>(SD.Local_InitialBooking) != null)
                 {
                     var roomInitialInfo = await LocalStorageService.GetItemAsync<HomeVM>(SD.Local_InitialBooking);
-                    HotelBooking.OrderDetails.HotelRoomDTO = await HotelRoomService.GetHotelRoomDetails(Id.Value, roomInitialInfo.StartDate.ToString("MM.dd.yyyy"), roomInitialInfo.EndDate.ToString("MM.dd.yyyy"));
+                    HotelBooking.OrderDetails.HotelRoomDTO = await HotelRoomService.GetHotelRoomDetails(Id.Value, roomInitialInfo.StartDate.ToString("MM/dd/yyyy"), roomInitialInfo.EndDate.ToString("MM/dd/yyyy"));
                     NoOfNights = roomInitialInfo.NoOfNights;
                     HotelBooking.OrderDetails.CheckInDate = roomInitialInfo.StartDate;
                     HotelBooking.OrderDetails.CheckOutDate = roomInitialInfo.EndDate;
@@ -161,7 +161,7 @@ using HiddenVilla_Client.Service.IService;
                 else
                 {
                     var roomInitialInfo = await LocalStorageService.GetItemAsync<HomeVM>(SD.Local_InitialBooking);
-                    HotelBooking.OrderDetails.HotelRoomDTO = await HotelRoomService.GetHotelRoomDetails(Id.Value, DateTime.Now.ToString("MM.dd.yyyy"), DateTime.Now.AddDays(1).ToString("MM.dd.yyyy"));
+                    HotelBooking.OrderDetails.HotelRoomDTO = await HotelRoomService.GetHotelRoomDetails(Id.Value, DateTime.Now.ToString("MM/dd/yyyy"), DateTime.Now.AddDays(1).ToString("MM/dd/yyyy"));
                     NoOfNights = 1;
                     HotelBooking.OrderDetails.CheckInDate = DateTime.Now;
                     HotelBooking.OrderDetails.CheckOutDate = DateTime.Now.AddDays(1);
@@ -176,10 +176,75 @@ using HiddenVilla_Client.Service.IService;
         }
     }
 
+    private async Task HandleNoOfNightsChange(ChangeEventArgs e)
+    {
+        NoOfNights = Convert.ToInt32(e.Value.ToString());
+        HotelBooking.OrderDetails.HotelRoomDTO = await HotelRoomService.GetHotelRoomDetails(Id.Value,
+            HotelBooking.OrderDetails.CheckInDate.ToString("MM/dd.yyyy"),
+            HotelBooking.OrderDetails.CheckOutDate.AddDays(NoOfNights).ToString("MM/dd/yyyy"));
+        HotelBooking.OrderDetails.CheckOutDate = HotelBooking.OrderDetails.CheckInDate.AddDays(NoOfNights);
+        HotelBooking.OrderDetails.HotelRoomDTO.TotalDays = NoOfNights;
+        HotelBooking.OrderDetails.HotelRoomDTO.TotalAmount = NoOfNights * HotelBooking.OrderDetails.HotelRoomDTO.RegularRate;
+    }
+
+    private async Task HandleCheckout()
+    {
+        if (!await HandleValidation())
+        {
+            return;
+        }
+        try
+        {
+            var paymentDTO = new StripePaymentDTO()
+            {
+                Amount = Convert.ToInt32(HotelBooking.OrderDetails.HotelRoomDTO.TotalAmount * 100),
+                ProductName = HotelBooking.OrderDetails.HotelRoomDTO.Name,
+                ReturnUrl = "/hotel/room-details/" + Id
+            };
+            var result = await StripePaymentService.CheckOut(paymentDTO);
+
+            HotelBooking.OrderDetails.StripeSessionId = result.Data.ToString();
+            HotelBooking.OrderDetails.RoomId = HotelBooking.OrderDetails.HotelRoomDTO.Id;
+            HotelBooking.OrderDetails.TotalCost = HotelBooking.OrderDetails.HotelRoomDTO.TotalAmount;
+
+            var roomOrderDetailsSaved = await RoomOrderDetailsService.SaveRoomOrderDetails(HotelBooking.OrderDetails);
+
+            await LocalStorageService.SetItemAsync(SD.Local_RoomOrderDetails, roomOrderDetailsSaved);
+
+            await JsRuntime.InvokeVoidAsync("redirectToCheckout", result.Data.ToString());
+        }
+        catch (Exception e)
+        {
+            await JsRuntime.ToastrError(e.Message);
+        }
+    }
+
+    private async Task<bool> HandleValidation()
+    {
+        if (string.IsNullOrEmpty(HotelBooking.OrderDetails.Name))
+        {
+            await JsRuntime.ToastrError("Name cannot be empty");
+            return false;
+        }
+        if (string.IsNullOrEmpty(HotelBooking.OrderDetails.Phone))
+        {
+            await JsRuntime.ToastrError("Phone cannot be empty");
+            return false;
+        }
+        if (string.IsNullOrEmpty(HotelBooking.OrderDetails.Email))
+        {
+            await JsRuntime.ToastrError("Email cannot be empty");
+            return false;
+        }
+        return true;
+    }
+
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IRoomOrderDetailsService RoomOrderDetailsService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IStripePaymentService StripePaymentService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IHotelRoomService HotelRoomService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ILocalStorageService LocalStorageService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JsRuntime { get; set; }

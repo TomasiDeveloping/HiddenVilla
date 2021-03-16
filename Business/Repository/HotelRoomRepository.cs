@@ -65,12 +65,47 @@ namespace Business.Repository
             {
                 HotelRoomDTO hotelRoomDto = _mapper.Map<HotelRoom, HotelRoomDTO>(await 
                     _db.HotelRooms.Include(x => x.HotelRoomImages).FirstOrDefaultAsync(x => x.Id == roomId));
+                if (!string.IsNullOrEmpty(checkInDateStr) && !string.IsNullOrEmpty(checkOutDateStr))
+                {
+                    hotelRoomDto.IsBooked = await IsRoomBooked(roomId, checkInDateStr, checkOutDateStr);
+                }
                 return hotelRoomDto;
 
             }
             catch (Exception e)
             {
                 return null;
+            }
+        }
+        
+        public async Task<bool> IsRoomBooked(int roomId, string checkInDatestr, string checkOutDatestr)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(checkOutDatestr) && !string.IsNullOrEmpty(checkInDatestr))
+                {
+                    DateTime checkInDate = DateTime.ParseExact(checkInDatestr, "MM.dd.yyyy", null);
+                    DateTime checkOutDate = DateTime.ParseExact(checkOutDatestr, "MM.dd.yyyy", null);
+                    var existingBooking = await _db.RoomOrderDetails.Where(x => x.RoomId == roomId && x.IsPaymentSuccessful &&
+                        // check if chekin date that user want does not fall in between any dates for room that is booked
+                        ((checkInDate < x.CheckOutDate &&
+                         checkInDate.Date >= x.CheckInDate)
+                         // check if checkout date that user wants does not fall in between any dates for room that is booked
+                         || (checkOutDate.Date > x.CheckInDate.Date &&
+                         checkInDate.Date <= x.CheckInDate.Date))).FirstOrDefaultAsync();
+                    if (existingBooking != null)
+                    {
+                        return true;
+                    }
+
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
         }
 
@@ -95,6 +130,14 @@ namespace Business.Repository
             {
                 IEnumerable<HotelRoomDTO> hotelRoomDtos =
                     _mapper.Map<IEnumerable<HotelRoom>, IEnumerable<HotelRoomDTO>>(_db.HotelRooms.Include(x => x.HotelRoomImages));
+                if (!string.IsNullOrEmpty(checkInDateStr) && !string.IsNullOrEmpty(checkOutDateStr))
+                {
+                    foreach (var hotelRoom in hotelRoomDtos)
+                    {
+                        hotelRoom.IsBooked = await IsRoomBooked(hotelRoom.Id, checkInDateStr, checkOutDateStr);
+                    }
+                    
+                }
                 return hotelRoomDtos;
             }
             catch (Exception ex)

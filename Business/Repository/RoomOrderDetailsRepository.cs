@@ -40,9 +40,20 @@ namespace Business.Repository
             }
         }
 
-        public Task<RoomOrderDetailsDTO> MarkPaymentSuccessful(int id)
+        public async Task<RoomOrderDetailsDTO> MarkPaymentSuccessful(int id)
         {
-            throw new NotImplementedException();
+            var data = await _db.RoomOrderDetails.FindAsync(id);
+            if (data == null) return null;
+            if (!data.IsPaymentSuccessful)
+            {
+                data.IsPaymentSuccessful = true;
+                data.Status = SD.Status_Booked;
+                var markPaymentSuccessful = _db.RoomOrderDetails.Update(data);
+                await _db.SaveChangesAsync();
+                return _mapper.Map<RoomOrderDetails, RoomOrderDetailsDTO>(markPaymentSuccessful.Entity);
+            }
+
+            return new RoomOrderDetailsDTO();
         }
 
         public async Task<RoomOrderDetailsDTO> GetRoomOrderDetails(int roomOrderId)
@@ -84,22 +95,6 @@ namespace Business.Repository
             throw new NotImplementedException();
         }
 
-        public async Task<bool> IsRoomBooked(int roomId, DateTime checkInDate, DateTime checkOutDate)
-        {
-            var status = false;
-            var existingBooking = await _db.RoomOrderDetails.Where(x => x.RoomId == roomId && x.IsPaymentSuccessful &&
-                                                                        // check if chekin date that user want does not fall in between any dates for room that is booked
-                                                                        (checkInDate < x.CheckOutDate &&
-                                                                         checkInDate.Date > x.CheckInDate
-                                                                         // check if checkout date that user wants does not fall in between any dates for room that is booked
-                                                                         || checkOutDate.Date > x.CheckInDate.Date &&
-                                                                         checkInDate.Date < x.CheckInDate.Date)).FirstOrDefaultAsync();
-            if (existingBooking != null)
-            {
-                status = true;
-            }
-
-            return status;
-        }
+       
     }
 }
