@@ -79,3 +79,8 @@ D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Api\obj\Debug\net5.0\ref\Hidden
 D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Api\obj\Debug\net5.0\HiddenVilla_Api.pdb
 D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Api\obj\Debug\net5.0\HiddenVilla_Api.genruntimeconfig.cache
 D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Api\bin\Debug\net5.0\Stripe.net.dll
+D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Api\bin\Debug\net5.0\HiddenVilla_Api.StaticWebAssets.xml
+D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Api\bin\Debug\net5.0\Mailjet.Client.dll
+D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Api\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.UI.Views.V4.dll
+D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Api\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.UI.dll
+D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Api\bin\Debug\net5.0\Microsoft.Extensions.FileProviders.Embedded.dll

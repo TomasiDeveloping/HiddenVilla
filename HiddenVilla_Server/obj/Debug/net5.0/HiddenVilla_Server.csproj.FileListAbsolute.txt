@@ -266,3 +266,10 @@ D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\obj\Debug\net5.0\HiddenV
 D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\obj\Debug\net5.0\ref\HiddenVilla_Server.dll
 D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\obj\Debug\net5.0\HiddenVilla_Server.pdb
 D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\obj\Debug\net5.0\HiddenVilla_Server.genruntimeconfig.cache
+D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\bin\Debug\net5.0\Microsoft.AspNetCore.Components.ProtectedBrowserStorage.dll
+D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\bin\Debug\net5.0\Radzen.Blazor.dll
+D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\bin\Debug\net5.0\System.Linq.Dynamic.Core.dll
+D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\obj\Debug\net5.0\RazorDeclaration\Pages\HotelRoomOrder\HotelRoomOrderList.razor.g.cs
+D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\obj\Debug\net5.0\Razor\Pages\HotelRoomOrder\HotelRoomOrderList.razor.g.cs
+D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\obj\Debug\net5.0\RazorDeclaration\Pages\HotelRoomOrder\HotelRoomOrderManagement.razor.g.cs
+D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\obj\Debug\net5.0\Razor\Pages\HotelRoomOrder\HotelRoomOrderManagement.razor.g.cs

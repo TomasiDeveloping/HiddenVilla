@@ -121,6 +121,13 @@ using HiddenVilla_Client.Service.IService;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 17 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\_Imports.razor"
+using Microsoft.AspNetCore.Components.Authorization;
+
+#line default
+#line hidden
+#nullable disable
     public partial class SurveyPrompt : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998

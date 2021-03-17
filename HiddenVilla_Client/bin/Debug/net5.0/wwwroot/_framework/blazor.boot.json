@@ -12,6 +12,7 @@
       "Blazored.LocalStorage.dll": "sha256-7+FtaZd2xSysaMLC59XhYdtkNMZ15ha0lk73dxPdT5w=",
       "Microsoft.AspNetCore.Authorization.dll": "sha256-hBmEudhpdeLXLU5KNzx5bBkI9o4ZurJu15U6afmGyIg=",
       "Microsoft.AspNetCore.Components.dll": "sha256-YYHd2lVuYwtRTYNBtWL5k+alBHjMQGBqMwwgixqG9Ak=",
+      "Microsoft.AspNetCore.Components.Authorization.dll": "sha256-hb1SQe2Ef8RkiTKrZV+eBPHy+raugQ0z7j+8p+xQkJQ=",
       "Microsoft.AspNetCore.Components.Forms.dll": "sha256-UCDJr7\/sSWmGNxe2PdesHLGuJ4DDhl80kt\/tIVZWHek=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-3xdazV4ZzJeovsJfSuAf6fDNtYdN6s8\/Jb07Ad4ba14=",
       "Microsoft.AspNetCore.Components.WebAssembly.dll": "sha256-97KtZg0QVFDfIPBAh8dCa7c7uEsp4E6nZ4nQaVPUJio=",
@@ -199,15 +200,15 @@
       "mscorlib.dll": "sha256-OoIy6q8Z4O5iSevqVXHfYC14mo\/kaxz74ydYX19CiAA=",
       "netstandard.dll": "sha256-FbW0xcZkySFb6B8yBpUE8XmaiMacDVdXdN9GeDH6xu4=",
       "System.Private.CoreLib.dll": "sha256-AQbVm+Z+NByScjRZWDWQnNUk5PBVgwCSWPLQN4YxxZs=",
-      "Common.dll": "sha256-I1tsxD1qH2DV8O2IDi6BhZMx7qZWpFant4XJwiCzK0I=",
+      "Common.dll": "sha256-waiVoLMJXPquVjwfo3yIVlU4YF3zp+G4uUVx8cFZda4=",
       "Models.dll": "sha256-4Ii1\/I1jGEI+h23f1r\/HCfkcRq\/+bz7ag8bWPWzZdRg=",
-      "HiddenVilla_Client.dll": "sha256-Qgs92fCSuvL5Wd8iW4P\/+Ke5Tb\/Gf3nhWFb0U0DcqyU="
+      "HiddenVilla_Client.dll": "sha256-fbRtRKATHHo5H9vE85TYutwBeJ4turC2mR8A4cw8eDo="
     },
     "lazyAssembly": null,
     "pdb": {
-      "Common.pdb": "sha256-m+UDfaFA+lcDY++yfcDBYOw6VfpELKDrOo65Y2X1W5Q=",
+      "Common.pdb": "sha256-qKSfVoaaBbV\/MQ18GrtjLGzKa5amzrt2CPpvaWibrfc=",
       "Models.pdb": "sha256-4eBBPly9gaN+Fv9jHAP1qZJ726BN3JGBzuYkEg7viX0=",
-      "HiddenVilla_Client.pdb": "sha256-rSnIFarXqj+AUaa4XT68SOU50KDyMLS6iVNo4Ahovbw="
+      "HiddenVilla_Client.pdb": "sha256-oLWMrcsU+QoBrygmrZX3mxA++BiMQjgQbNjqy8dCts4="
     },
     "runtime": {
       "dotnet.timezones.blat": "sha256-rFG55cwkAnfHzxmxwBL2tTwfj8X8cjcSEAlco4bc1eo=",

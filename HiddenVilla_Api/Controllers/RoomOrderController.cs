@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Business.Repository.IRepository;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using Stripe.Checkout;
@@ -11,10 +12,12 @@ namespace HiddenVilla_Api.Controllers
     public class RoomOrderController : Controller
     {
         private readonly IRoomOrderDetailsRepository _repository;
+        private readonly IEmailSender _emailSender;
 
-        public RoomOrderController(IRoomOrderDetailsRepository repository)
+        public RoomOrderController(IRoomOrderDetailsRepository repository, IEmailSender emailSender)
         {
             _repository = repository;
+            _emailSender = emailSender;
         }
         
         [HttpPost]
@@ -50,6 +53,8 @@ namespace HiddenVilla_Api.Controllers
                     });
                 }
 
+                await _emailSender.SendEmailAsync(details.Email, "Booking Confirmed - Hidden Villa",
+                    "Your booking has been confirmed at Hidden Villa with order ID :" + details.Id);
                 return Ok(result);
             }
             else

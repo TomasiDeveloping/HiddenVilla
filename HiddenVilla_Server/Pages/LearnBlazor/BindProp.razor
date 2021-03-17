@@ -1,6 +1,8 @@
 ﻿@page "/bindprop"
 @using HiddenVilla_Server.Model
-
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@inject ProtectedLocalStorage LocalStorage;
+@inject ProtectedSessionStorage SessionStorage;
 
 <div class="bg-light border p-2">
     <h2 class="bg-light border p-2">
@@ -50,11 +52,15 @@
         <p>@room.RoomName's Price is @room.Price</p>
     }
 </div>
+<p>Counter Value from other Page (Session) : @CounterSession</p>
+<p>Counter Value from other Page (Local) : @CounterLocal</p>
 
 @code
 {
     string SelectedRoomProp = "";
     List<BlazorRoom> RoomList = new List<BlazorRoom>();
+    public int CounterLocal { get; set; }
+    public int CounterSession { get; set; }
     Model.BlazorRoom Room = new BlazorRoom()
     {
         Id = 201,
@@ -68,8 +74,13 @@
         }
     };
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+        var resultLocal = await LocalStorage.GetAsync<int>("counterLocal");
+        CounterLocal = resultLocal.Success ? resultLocal.Value : 0;
+        var resultSession = await SessionStorage.GetAsync<int>("counterSession");
+        CounterSession = resultSession.Success ? resultSession.Value : 0;
+        
         base.OnInitialized();
         
         RoomList.Add(new BlazorRoom()

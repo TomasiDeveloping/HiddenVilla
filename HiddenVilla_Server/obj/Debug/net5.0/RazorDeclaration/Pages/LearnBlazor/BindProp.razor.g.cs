@@ -104,8 +104,22 @@ using Blazored.TextEditor;
 #line hidden
 #nullable disable
 #nullable restore
+#line 14 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\_Imports.razor"
+using Radzen.Blazor;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\Pages\LearnBlazor\BindProp.razor"
 using HiddenVilla_Server.Model;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\Pages\LearnBlazor\BindProp.razor"
+using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 
 #line default
 #line hidden
@@ -119,10 +133,12 @@ using HiddenVilla_Server.Model;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 55 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\Pages\LearnBlazor\BindProp.razor"
+#line 59 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\Pages\LearnBlazor\BindProp.razor"
  
     string SelectedRoomProp = "";
     List<BlazorRoom> RoomList = new List<BlazorRoom>();
+    public int CounterLocal { get; set; }
+    public int CounterSession { get; set; }
     Model.BlazorRoom Room = new BlazorRoom()
     {
         Id = 201,
@@ -136,8 +152,13 @@ using HiddenVilla_Server.Model;
         }
     };
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+        var resultLocal = await LocalStorage.GetAsync<int>("counterLocal");
+        CounterLocal = resultLocal.Success ? resultLocal.Value : 0;
+        var resultSession = await SessionStorage.GetAsync<int>("counterSession");
+        CounterSession = resultSession.Success ? resultSession.Value : 0;
+        
         base.OnInitialized();
         
         RoomList.Add(new BlazorRoom()
@@ -170,6 +191,8 @@ using HiddenVilla_Server.Model;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ProtectedSessionStorage SessionStorage { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ProtectedLocalStorage LocalStorage { get; set; }
     }
 }
 #pragma warning restore 1591

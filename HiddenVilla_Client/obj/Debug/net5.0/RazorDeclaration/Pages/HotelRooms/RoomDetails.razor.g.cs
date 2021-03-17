@@ -124,6 +124,27 @@ using HiddenVilla_Client.Service.IService;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 17 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\_Imports.razor"
+using Microsoft.AspNetCore.Components.Authorization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\Pages\HotelRooms\RoomDetails.razor"
+using Microsoft.AspNetCore.Authorization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 8 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\Pages\HotelRooms\RoomDetails.razor"
+           [Authorize(Roles = SD.Role_Customer)]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/hotel/room-details/{Id:int}")]
     public partial class RoomDetails : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -133,7 +154,7 @@ using HiddenVilla_Client.Service.IService;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 127 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\Pages\HotelRooms\RoomDetails.razor"
+#line 156 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\Pages\HotelRooms\RoomDetails.razor"
        
     [Parameter]
     public int? Id { get; set; }
@@ -168,6 +189,14 @@ using HiddenVilla_Client.Service.IService;
                     HotelBooking.OrderDetails.HotelRoomDTO.TotalDays = 1;
                     HotelBooking.OrderDetails.HotelRoomDTO.TotalAmount = HotelBooking.OrderDetails.HotelRoomDTO.RegularRate;
                 }
+            }
+            if (await LocalStorageService.GetItemAsync<UserDTO>(SD.Local_UserDetails) != null)
+            {
+                var userInfo = await LocalStorageService.GetItemAsync<UserDTO>(SD.Local_UserDetails);
+                HotelBooking.OrderDetails.UserId = userInfo.Id;
+                HotelBooking.OrderDetails.Name = userInfo.Name;
+                HotelBooking.OrderDetails.Email = userInfo.Email;
+                HotelBooking.OrderDetails.Phone = userInfo.PhoneNo;
             }
         }
         catch (Exception e)

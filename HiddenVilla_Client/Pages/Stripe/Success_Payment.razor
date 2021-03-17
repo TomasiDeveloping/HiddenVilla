@@ -1,7 +1,8 @@
 ﻿@page "/success-payment"
+@using Microsoft.AspNetCore.Authorization
 @inject ILocalStorageService LocalStorageService;
 @inject IRoomOrderDetailsService RoomOrderDetailsService;
-
+@attribute [Authorize(Roles = SD.Role_Customer)]
 
 <div class="container">
     @if (!IsPaymentComplete)

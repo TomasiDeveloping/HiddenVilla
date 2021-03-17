@@ -124,6 +124,27 @@ using HiddenVilla_Client.Service.IService;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 17 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\_Imports.razor"
+using Microsoft.AspNetCore.Components.Authorization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\Pages\Stripe\Success_Payment.razor"
+using Microsoft.AspNetCore.Authorization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\Pages\Stripe\Success_Payment.razor"
+           [Authorize(Roles = SD.Role_Customer)]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/success-payment")]
     public partial class Success_Payment : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -133,7 +154,7 @@ using HiddenVilla_Client.Service.IService;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 28 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\Pages\Stripe\Success_Payment.razor"
+#line 29 "D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\Pages\Stripe\Success_Payment.razor"
        
     private bool IsPaymentComplete { get; set; }
     private int OrderId { get; set; }

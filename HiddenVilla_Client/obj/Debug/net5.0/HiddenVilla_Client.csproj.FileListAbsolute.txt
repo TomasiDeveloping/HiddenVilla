@@ -650,3 +650,14 @@ D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\obj\Debug\net5.0\ref\Hid
 D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\obj\Debug\net5.0\HiddenVilla_Client.pdb
 D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\obj\Debug\net5.0\RazorDeclaration\Pages\Stripe\Success_Payment.razor.g.cs
 D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\obj\Debug\net5.0\Razor\Pages\Stripe\Success_Payment.razor.g.cs
+D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.AspNetCore.Components.Authorization.dll.gz
+D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\bin\Debug\net5.0\wwwroot\_framework\Microsoft.AspNetCore.Components.Authorization.dll
+D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\obj\Debug\net5.0\build-gz\+gmOudOv.gz
+D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\obj\Debug\net5.0\RazorDeclaration\Pages\Authentication\Login.razor.g.cs
+D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\obj\Debug\net5.0\RazorDeclaration\Pages\Authentication\Register.razor.g.cs
+D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\obj\Debug\net5.0\Razor\Pages\Authentication\Login.razor.g.cs
+D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\obj\Debug\net5.0\Razor\Pages\Authentication\Register.razor.g.cs
+D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\obj\Debug\net5.0\RazorDeclaration\Pages\Authentication\Logout.razor.g.cs
+D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\obj\Debug\net5.0\Razor\Pages\Authentication\Logout.razor.g.cs
+D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\obj\Debug\net5.0\RazorDeclaration\Pages\Authentication\RedirectToLogin.razor.g.cs
+D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Client\obj\Debug\net5.0\Razor\Pages\Authentication\RedirectToLogin.razor.g.cs

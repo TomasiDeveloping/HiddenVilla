@@ -2,4 +2,5 @@
   <ContentRoot BasePath="/" Path="D:\Webseiten\HiddenVilla\HiddenVilla\HiddenVilla_Server\obj\Debug\net5.0\scopedcss\bundle\" />
   <ContentRoot BasePath="/Identity" Path="C:\Users\ptoma\.nuget\packages\microsoft.aspnetcore.identity.ui\5.0.3\staticwebassets\V4\" />
   <ContentRoot BasePath="_content/Blazored.TextEditor" Path="C:\Users\ptoma\.nuget\packages\blazored.texteditor\1.0.3\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Radzen.Blazor" Path="C:\Users\ptoma\.nuget\packages\radzen.blazor\3.1.6\build\..\staticwebassets\" />
 </StaticWebAssets>
